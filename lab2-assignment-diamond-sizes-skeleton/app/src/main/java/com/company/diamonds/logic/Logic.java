@@ -46,7 +46,76 @@ public class Logic
     public void process(int size) {
 
         // TODO -- add your code here
+        String first = "+";
+        int dev = 3;
+        String slashStyle = "=";
 
+        //first string
+        for (int i = 0; i < size*2; i++){
+            first = first + "-";
+        }
+        first += "+";
+        mOut.println(first);
+
+        for (int i = 1; i < size*2; i++){
+            int countOfSpaces = size - i;
+            int countOfSlashes = size - countOfSpaces - 1;
+            int countOfSpacesReverse = i - size;
+
+            if (size == 1){
+                mOut.println("|<>|");
+            }
+            else{
+                if (i == size){
+                    mOut.print("|<");
+                    for(int y = 0; y < countOfSlashes*2; y++){
+                        mOut.print(slashStyle);
+                    }
+                    mOut.println(">|");
+                }
+                else{
+                    if (i < size){
+                        mOut.print("|");
+                        for (int x = 0; x<countOfSpaces; x++){
+                            mOut.print(" ");
+                        }
+                        mOut.print("/");
+                        for(int y = 0; y < countOfSlashes * 2; y++){
+                            mOut.print(slashStyle);
+                        }
+                        mOut.print("\\");
+                        for(int x = 0; x < countOfSpaces; x++){
+                            mOut.print(" ");
+                        }
+                        mOut.println("|");
+                    }
+                    else{
+                        int countOfSlashesReverse = i-dev;
+                        dev += 2;
+                        mOut.print("|");
+                        for(int x = 0; x<countOfSpacesReverse; x++){
+                            mOut.print(" ");
+                        }
+                        mOut.print("\\");
+                        for(int y = 0;y<countOfSlashesReverse *2; y++){
+                            mOut.print(slashStyle);
+                        }
+                        mOut.print("/");
+                        for (int x = 0; x <countOfSpacesReverse; x++){
+                            mOut.print(" ");
+                        }
+                        mOut.println("|");
+                    }
+                }
+            }
+            if(slashStyle == "="){
+                slashStyle = "-";
+            }
+            else{
+                slashStyle = "=";
+            }
+        }
+        mOut.println(first);
     }
 
 }
