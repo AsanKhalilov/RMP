@@ -76,7 +76,37 @@ public class Logic
      */
     public double calculate(int size, int count) {
         // TODO -- add your code here
+        int coincidences = 0; //Совпадения
+        for (int i = 0; i < count; i++) {
+            // Создаем новый объект Random для каждого прогона моделирования
+            Random rand = new Random(i + 1);
+            // Создаем массив birthdays для хранения дней рождения группы людей
+            int[] birthdays = new int[size];
+            // Заполняем массив случайными днями рождения
+            for (int j = 0; j < size; j++) {
+                birthdays[j] = rand.nextInt(365); // Генерируем случайное число от 0 до 364
+            }
+            // Проверяем, есть ли в группе два человека с одинаковыми днями рождения
+            boolean hasDuplicate = false;
+            for (int j = 0; j < size - 1; j++) {
+                for (int k = j + 1; k < size; k++) {
+                    if (birthdays[j] == birthdays[k]) {
+                        hasDuplicate = true;
+                        break;
+                    }
+                }
+                if (hasDuplicate) {
+                    break;
+                }
+            }
+            if (hasDuplicate) {
+                coincidences++;
+            }
+        }
 
+        return (double) coincidences / count * 100;
     }
+
+
     // TODO - add your code here
 }
